@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">L08 PS</string>
+    <string name="songTitle">Song Title</string>
+    <string name="songTitleInput">Enter song title here</string>
+    <string name="singers">Singers</string>
+    <string name="singersInput">Enter singers name here</string>
+    <string name="year">Year</string>
+    <string name="yearInput">Enter year of release here</string>
+    <string name="stars">Stars</string>
+    <string name="insert">INSERT</string>
+    <string name="showList">SHOW LIST</string>
+</resources>
