@@ -9,4 +9,10 @@
     <string name="stars">Stars</string>
     <string name="insert">INSERT</string>
     <string name="showList">SHOW LIST</string>
+
+    <string name="btnShowAll">SHOW ALL SONGS WITH 5 STARS</string>
+
+    <string name="btnCancel">CANCEL</string>
+    <string name="btnUpdate">UPDATE</string>
+    <string name="btnDelete">DELETE</string>
 </resources>

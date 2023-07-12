@@ -20,4 +20,6 @@ public class Song {
     public String getSingers() {return singers;}
     public int getYear() {return year;}
     public int getStars() {return stars;}
+    public String toString() {return id + "\n" + "Song Title: " + title + "\n" + "Singer Name: " + singers
+            + "\n" + "Year of Song Release: " + year + "\n" + "Rating: " + stars + "/5 stars";}
 }

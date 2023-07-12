@@ -80,5 +80,23 @@ public class DBHelper extends SQLiteOpenHelper {
         return songslist;
     }
 
+    public int updateSong(int id, String song, String singers, int year, int stars) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_SONG, song);
+        values.put(COLUMN_SINGER, singers);
+        values.put(COLUMN_YEAR, year);
+        values.put(COLUMN_STARS, stars);
+        int result = db.update(TABLE_SONGS, values, COLUMN_ID + " = ?", new String[]{String.valueOf(id)});
+        db.close();
+        return result;
+    }
+
+    public int deleteSong(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int result = db.delete(TABLE_SONGS, COLUMN_ID + " = ?", new String[]{String.valueOf(id)});
+        db.close();
+        return result;
+    }
 
 }

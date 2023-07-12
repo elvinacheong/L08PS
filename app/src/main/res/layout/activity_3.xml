@@ -95,18 +95,24 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btnInsert"
+            android:id="@+id/btnUpdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/insert" />
+            android:text="@string/btnUpdate" />
 
         <Button
-            android:id="@+id/btnShowList"
+            android:id="@+id/btnDelete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/showList" />
+            android:text="@string/btnDelete" />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btnCancel" />
 
 </LinearLayout>

@@ -1,46 +1,38 @@
 package com.myapplicationdev.android.l08ps;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
 
-    TextView tvSongTitle, tvSingers, tvYear, tvStars;
+public class SecondActivity extends AppCompatActivity {
+
     EditText etSongTitle, etSingers, etYear;
     RadioGroup rgStars;
-    Button btnInsert, btnShowList;
+    Button btnUpdate, btnDelete, btnCancel;
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        tvSongTitle = findViewById(R.id.tvSongTitle);
-        tvSingers = findViewById(R.id.tvSingers);
-        tvYear = findViewById(R.id.tvYear);
-        tvStars = findViewById(R.id.tvStars);
+        setContentView(R.layout.activity_3);
 
         etSongTitle = findViewById(R.id.etSongTitle);
         etSingers = findViewById(R.id.etSingers);
         etYear = findViewById(R.id.etYear);
 
-        btnInsert = findViewById(R.id. btnInsert);
-        btnShowList = findViewById(R.id.btnShowList);
+        btnUpdate = findViewById(R.id.btnUpdate);
+        btnDelete = findViewById(R.id.btnDelete);
+        btnCancel = findViewById(R.id.btnCancel);
 
         rgStars = findViewById(R.id.rgStars);
 
-        btnInsert.setOnClickListener(new View.OnClickListener() {
+        btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DBHelper db = new DBHelper(MainActivity.this);
-
+                DBHelper db = new DBHelper(SecondActivity.this);
                 int stars;
                 if (rgStars.getCheckedRadioButtonId() == R.id.radioButton6) {
                     stars = 1;
@@ -58,14 +50,27 @@ public class MainActivity extends AppCompatActivity {
                 String singer = etSingers.getText().toString();
                 int year = Integer.parseInt(etYear.getText().toString());
 
-                db.insertSong(song, singer, year, stars);
+                db.updateSong(getTaskId(), song, singer, year, stars);
                 db.close();
-
-                etSongTitle.setText("");
-                etSingers.setText("");
-                etYear.setText("");
+                finish();
             }
         });
 
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DBHelper db = new DBHelper(SecondActivity.this);
+                db.deleteSong(getTaskId());
+                db.close();
+                finish();
+            }
+        });
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 }
