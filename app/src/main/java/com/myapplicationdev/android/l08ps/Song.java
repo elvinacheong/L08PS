@@ -5,9 +5,9 @@ public class Song {
     private String title;
     private String singers;
     private int year;
-    private int stars;
+    private String stars;
 
-    public Song(int id, String title, String singers, int year, int stars) {
+    public Song(int id, String title, String singers, int year, String stars) {
         this.id = id;
         this.title = title;
         this.singers = singers;
@@ -19,7 +19,7 @@ public class Song {
     public String getTitle() {return title;}
     public String getSingers() {return singers;}
     public int getYear() {return year;}
-    public int getStars() {return stars;}
+    public String getStars() {return stars;}
     public String toString() {return id + "\n" + "Song Title: " + title + "\n" + "Singer Name: " + singers
-            + "\n" + "Year of Song Release: " + year + "\n" + "Rating: " + stars + "/5 stars";}
+            + "\n" + "Year of Song Release: " + year + "\n" + "Rating: " + stars;}
 }

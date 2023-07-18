@@ -33,17 +33,17 @@ public class SecondActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 DBHelper db = new DBHelper(SecondActivity.this);
-                int stars;
+                String stars;
                 if (rgStars.getCheckedRadioButtonId() == R.id.radioButton6) {
-                    stars = 1;
+                    stars = "*";
                 } else if (rgStars.getCheckedRadioButtonId() == R.id.radioButton7) {
-                    stars = 2;
+                    stars = "*";
                 } else if (rgStars.getCheckedRadioButtonId() == R.id.radioButton8) {
-                    stars = 3;
+                    stars = "*";
                 } else if (rgStars.getCheckedRadioButtonId() == R.id.radioButton9) {
-                    stars = 4;
+                    stars = "*";
                 } else {
-                    stars = 5;
+                    stars = "*";
                 }
 
                 String song = etSongTitle.getText().toString();

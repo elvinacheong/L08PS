@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,9 +20,12 @@ public class List extends AppCompatActivity {
     Button btnShowAll;
     ListView lv;
     RadioGroup rgStars;
+    TextView date;
 
-    ArrayList<Song> al;
-    ArrayAdapter<Song> aa;
+    ArrayList<List> al;
+    ArrayAdapter<List> aa;
+
+    CustomAdapter adapter;
 
 
     @SuppressLint("MissingInflatedId")
@@ -35,10 +39,8 @@ public class List extends AppCompatActivity {
         rgStars = findViewById(R.id.rgStars);
 
         DBHelper db1 = new DBHelper(List.this);
+        // al = db1.getAllSongs();
         db1.close();
-
-        DBHelper db2 = new DBHelper(List.this);
-        db2.close();
 
         aa = new ArrayAdapter<>(List.this, android.R.layout.simple_list_item_1, al);
         lv.setAdapter(aa);
@@ -46,20 +48,20 @@ public class List extends AppCompatActivity {
         btnShowAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int stars;
+                String stars;
                 if (rgStars.getCheckedRadioButtonId() == R.id.radioButton6) {
-                    stars = 1;
+                    stars = "*";
                 } else if (rgStars.getCheckedRadioButtonId() == R.id.radioButton7) {
-                    stars = 2;
+                    stars = "**";
                 } else if (rgStars.getCheckedRadioButtonId() == R.id.radioButton8) {
-                    stars = 3;
+                    stars = "***";
                 } else if (rgStars.getCheckedRadioButtonId() == R.id.radioButton9) {
-                    stars = 4;
+                    stars = "****";
                 } else {
-                    stars = 5;
+                    stars = "*****";
                 }
                 DBHelper db = new DBHelper(List.this);
-                al = db.getAllSongs();
+                //al = db.getAllSongs();
                 db.close();
 
                 aa = new ArrayAdapter<>(List.this, android.R.layout.simple_list_item_1, al);
@@ -67,14 +69,17 @@ public class List extends AppCompatActivity {
             }
         });
 
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Song pos = al.get(position);
-                Intent intent = new Intent(List.this, SecondActivity.class);
-                intent.putExtra("song", (CharSequence) pos);
-                startActivity(intent);
-            }
-        });
+        //lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        //    @Override
+        //    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        //        Song pos = adapter.get(position);
+        //        Intent intent = new Intent(List.this, SecondActivity.class);
+        //        intent.putExtra("song", (CharSequence) pos);
+        //        startActivity(intent);
+        //    }
+        //});
+
+        adapter = new CustomAdapter(this, R.layout.row, al);
+        lv.setAdapter(adapter);
     }
 }

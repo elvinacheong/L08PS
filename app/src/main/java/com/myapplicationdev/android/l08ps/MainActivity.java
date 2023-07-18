@@ -2,6 +2,7 @@ package com.myapplicationdev.android.l08ps;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -41,17 +42,17 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 DBHelper db = new DBHelper(MainActivity.this);
 
-                int stars;
+                String stars;
                 if (rgStars.getCheckedRadioButtonId() == R.id.radioButton6) {
-                    stars = 1;
+                    stars = "*";
                 } else if (rgStars.getCheckedRadioButtonId() == R.id.radioButton7) {
-                    stars = 2;
+                    stars = "**";
                 } else if (rgStars.getCheckedRadioButtonId() == R.id.radioButton8) {
-                    stars = 3;
+                    stars = "***";
                 } else if (rgStars.getCheckedRadioButtonId() == R.id.radioButton9) {
-                    stars = 4;
+                    stars = "****";
                 } else {
-                    stars = 5;
+                    stars = "*****";
                 }
 
                 String song = etSongTitle.getText().toString();
@@ -64,6 +65,14 @@ public class MainActivity extends AppCompatActivity {
                 etSongTitle.setText("");
                 etSingers.setText("");
                 etYear.setText("");
+            }
+        });
+
+        btnShowList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, List.class);
+                startActivity(intent);
             }
         });
 

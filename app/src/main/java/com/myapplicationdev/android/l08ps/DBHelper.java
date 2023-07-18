@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 
 public class DBHelper extends SQLiteOpenHelper {
-    private static final int DATABASE_VER = 1;
+    private static final int DATABASE_VER = 2;
     private static final String DATABASE_NAME = "songs.db";
     private static final String TABLE_SONGS = "songs";
     private static final String COLUMN_ID = "_id";
@@ -32,7 +32,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 + COLUMN_SONG + " TEXT,"
                 + COLUMN_SINGER + " TEXT, "
                 + COLUMN_YEAR + " INTEGER, "
-                + COLUMN_STARS + " INTEGER )";
+                + COLUMN_STARS + " STRING )";
         db.execSQL(createTableSql);
         Log.i("info", "created tables");
     }
@@ -43,7 +43,7 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public long insertSong(String song, String singers, int year, int stars) {
+    public long insertSong(String song, String singers, int year, String stars) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_SONG, song);
@@ -68,7 +68,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 String title = cursor.getString(1);
                 String singers = cursor.getString(2);
                 int year = cursor.getInt(3);
-                int stars = cursor.getInt(4);
+                String stars = cursor.getString(4);
 
                 Song newSong = new Song (id, title, singers, year, stars);
                 songslist.add(newSong);
@@ -80,7 +80,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return songslist;
     }
 
-    public int updateSong(int id, String song, String singers, int year, int stars) {
+    public int updateSong(int id, String song, String singers, int year, String stars) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_SONG, song);
